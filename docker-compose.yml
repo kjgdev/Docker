@@ -1,0 +1,32 @@
+version: '3'
+services: 
+  admin-service: 
+    build: ./BE
+    image: mkhang123/adminbe:latest
+    volumes:
+      - ./:/usr/src/app
+    networks: 
+      - backend
+    environment:
+      - MYSQL_HOST=66.42.59.144
+      - MYSQL_USER=lucifer
+      - MYSQL_PASS=12344321
+      - MYSQL_DB=moviedb
+    ports: 
+      - 1111:9999
+  frontend:
+    build: ./FE
+    image: mkhang123/frontend:latest
+    volumes:
+      - './:/app'
+      - '/app/node_modules'
+    ports:
+      - 3000:3000
+    stdin_open: true
+    networks: 
+      - backend
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: npm start
+networks: 
+  backend:
