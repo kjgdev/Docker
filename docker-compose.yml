@@ -1,6 +1,6 @@
 version: '3'
 services: 
-  admin-service: 
+  adminv2: 
     image: mkhang123/adminbe:latest
     volumes:
       - ./:/usr/src/app
@@ -13,13 +13,13 @@ services:
       - MYSQL_DB=moviedb
     ports: 
       - 1111:9999
-  frontend:
+  frontendv2:
     image: mkhang123/frontend:latest
     volumes:
       - './:/app'
       - '/app/node_modules'
     ports:
-      - 3000:3000
+      - 4000:3000
     stdin_open: true
     networks: 
       - backend
