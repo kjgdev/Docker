@@ -3,7 +3,7 @@ services:
   adminv2: 
     image: mkhang123/adminbe:latest
     volumes:
-      - ./:/usr/src/app
+      - ./BE:/usr/src/app
     networks: 
       - backend
     environment:
