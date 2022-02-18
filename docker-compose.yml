@@ -12,7 +12,7 @@ services:
       - MYSQL_PASS=12344321
       - MYSQL_DB=moviedb
     ports: 
-      - 1111:9999
+      - 2222:9999
   frontendv2:
     image: mkhang123/frontend:latest
     volumes:
