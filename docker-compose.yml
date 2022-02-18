@@ -3,7 +3,7 @@ services:
   adminv2: 
     image: mkhang123/adminbe:latest
     volumes:
-      - ./BE:/usr/src/app
+      - ./:/usr/src/app
     networks: 
       - backend
     environment:
@@ -16,7 +16,7 @@ services:
   frontendv2:
     image: mkhang123/frontend:latest
     volumes:
-      - './FE:/app'
+      - './:/app'
       - '/app/node_modules'
     ports:
       - 4000:3000
