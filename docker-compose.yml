@@ -1,15 +1,22 @@
-version: '3'
-
+version: '3.8'
 services:
-  react-frontend:
-    container_name: react-frontend
+  nginx:
+    depends_on:
+      - client
+    restart: always
     build:
-      context: .
       dockerfile: Dockerfile
-    volumes:
-      - .:/app
-      - /app/node_modules
+      context: ./nginx
     ports:
-      - 3000:3000
+      - 3050:80
+
+  client:
+    stdin_open: true
     environment:
-      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    volumes:
+      - /app/node_modules
+      - ./client:/app
