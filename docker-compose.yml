@@ -1,7 +1,11 @@
 version: '3'
 services: 
   admin-service: 
+    build: .
     image: mkhang123/adminbe:latest
+    volumes:
+      - ./:/usr/src/app
+      - /usr/app/node_modules
     networks: 
       - backend
     environment:
