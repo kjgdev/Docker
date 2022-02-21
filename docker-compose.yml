@@ -5,7 +5,6 @@ services:
     image: mkhang123/adminbe:latest
     volumes:
       - ./:/usr/src/app
-      - /usr/src/app/node_modules
     networks: 
       - backend
     environment:
