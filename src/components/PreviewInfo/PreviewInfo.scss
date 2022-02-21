@@ -1,0 +1,67 @@
+.PreviewInfo__container {
+    position: relative;
+    background-color: rgba(0,0,0, 0.5);
+    padding: 0 1.25em;
+}
+
+.DetailInfo__container{
+    
+    background-color:black
+}
+
+.match-score {
+    font-weight: 700;
+    display: inline-block;
+    color: #46d369;
+}
+
+.maturity-rating {
+    display: inline-block;
+}
+
+.maturity-number {
+    font-family: 'Netflix Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    border: solid 1px rgba(255,255,255,.4);
+    padding: 0 .4em;
+    unicode-bidi: normal;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.player-feature-badge {
+    border: 1px solid rgba(255,255,255,.4);
+    color: rgba(255,255,255,.9);
+    padding: 0 .5em;
+    font-size: .7em;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+.preview-detail-metadata{
+    margin:  0;
+}
+
+.supplemental-message {
+    font-weight: 700;
+    margin-bottom: .5em;
+}
+
+.preview-message {
+    line-height: 27px;
+    font-size: 18px;
+    margin-bottom: .5em;
+}
+
+.genre-title{
+    text-decoration:none;
+    color: #ddd;
+    &:hover{
+        text-decoration:underline;
+        color: #ddd;
+    }
+}

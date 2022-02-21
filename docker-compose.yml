@@ -1,18 +1,15 @@
 version: '3'
-services: 
-  admin-service: 
-    build: ./
-    image: mkhang123/adminbe:latest
+
+services:
+  react-frontend:
+    container_name: react-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
-      - ./:/usr/src/app
-    networks: 
-      - backend
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000
     environment:
-      - MYSQL_HOST=66.42.59.144
-      - MYSQL_USER=lucifer
-      - MYSQL_PASS=12344321
-      - MYSQL_DB=moviedb
-    ports: 
-      - 1111:9999
-networks: 
-  backend:
+      - NODE_ENV=development
