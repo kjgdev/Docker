@@ -1,6 +1,6 @@
 version: '3'
 services: 
-  adminv2: 
+  adminbe: 
     image: mkhang123/adminbe:latest
     volumes:
       - ./:/usr/src/app
@@ -12,19 +12,6 @@ services:
       - MYSQL_PASS=12344321
       - MYSQL_DB=moviedb
     ports: 
-      - 2222:9999
-  frontendv2:
-    image: mkhang123/frontend:latest
-    volumes:
-      - './:/app'
-      - '/app/node_modules'
-    ports:
-      - 4000:3000
-    stdin_open: true
-    networks: 
-      - backend
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-    command: npm start
+      - 1111:9999
 networks: 
   backend:
