@@ -54,9 +54,6 @@ const AccountProfile = () => {
         </div>
         <div className="profile__body">
           <div className="profile__body__container">
-            {/* <div className=' mb-3' onClick={() => localStorage.setItem('access_token', '1')}>
-                        REmove token key
-                    </div> */}
             <Row>
               <Col lg='3' xs="12" >
                 <Row>
@@ -74,7 +71,7 @@ const AccountProfile = () => {
                 </Row>
               </Col>
               <Col lg="9" xs='12' >
-                <div>
+                <div style={{ marginLeft: '20px' }}>
                   <Switch>
                     {routesprofile.map((route, index) => (
                       // Render more <Route>s with the same paths as
@@ -93,7 +90,7 @@ const AccountProfile = () => {
           </div>
         </div>
 
-        <div style={{backgroundColor: 'black' }}>
+        <div style={{ position: 'absolute', bottom: '0', backgroundColor: 'black' }}>
           <Footer />
         </div>
       </div>

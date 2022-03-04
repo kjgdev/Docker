@@ -13,7 +13,7 @@ instance.interceptors.request.use(
       config.headers = {
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
     }
 
@@ -29,7 +29,7 @@ instance.interceptors.response.use((response) => {
   return response
 }, async function (error) {
   const originalRequest = error.config;
-
+  
   if (error.response.status == 401 && !originalRequest._retry) {
     originalRequest._retry = true;
     const request_token_status = await requestRefreshToken();
@@ -39,7 +39,7 @@ instance.interceptors.response.use((response) => {
       return instance(originalRequest);
     }
     else if (request_token_status == 401) {
-
+      
       await requestLogout(localStorage.getItem('refresh_token'))
       localStorage.clear()
       document.location.href = '/signin'
@@ -50,9 +50,6 @@ instance.interceptors.response.use((response) => {
 
     return instance(originalRequest);
   }
-  else if (error.response.status == 500) {
-    document.location.href = '/maintenance'
-  }
   return Promise.reject(error);
 });
 
@@ -60,7 +57,7 @@ axios.interceptors.response.use((response) => {
   return response
 }, async function (error) {
   const originalRequest = error.config;
-
+  
   if (error.response.status === 401 && !originalRequest._retry) {
     originalRequest._retry = true;
     const request_token_status = await requestRefreshToken();
@@ -70,7 +67,7 @@ axios.interceptors.response.use((response) => {
       return instance(originalRequest);
     }
     else if (request_token_status === 401) {
-
+      
       await requestLogout(localStorage.getItem('refresh_token'))
       localStorage.clear()
       document.location.href = '/signin'
@@ -81,7 +78,7 @@ axios.interceptors.response.use((response) => {
 
     return instance(originalRequest);
   }
-  else if (error.response.status === 500) {
+  else if(error.response.status === 500){
     document.location.reload(true)
   }
   return Promise.reject(error);
@@ -210,7 +207,7 @@ export const getAllMovies = async () => {
 
 export const getMoviesByGenres = async (arrIdGenre, number, token) => {
   return new Promise((resolve, reject) => {
-
+    
     axios({
       method: 'post',
       url: movieApi.urlGetMoviesByGenres,
@@ -308,28 +305,13 @@ export const updateTimeWatched = async (id_movie, value_watched, token,) => {
   })
 }
 
-export const addWatchingList = async (id_movie, value_watched, token) => {
+export const addWatchingList = async (id_movie, value_watched) => {
   return new Promise((resolve, reject) => {
     instance.post(movieApi.urlAddWatchingList, {
       id_movie,
       value: value_watched
     }
     )
-      //   fetch(movieApi.urlAddWatchingList
-      //     , {
-      //         crossDomain: true,
-      //         method: "POST",
-      //         mode: 'cors',
-      //         headers: {
-      //             'Content-Type': 'application/json',
-      //             'Authorization': "Bearer " + token,
-      //         },
-      //         body: JSON.stringify({ 
-      //           id_movie,
-      //           value: value_watched
-      //         })
-      //     }
-      // )
       .then(response => {
         resolve(response)
       })
@@ -382,7 +364,7 @@ export const deleteWatchingList = async (idMovie) => {
 }
 
 //0: Dislike, 1: Like
-export const isLikeOrDislike = async (idMovie, value, token) => {
+export const isLikeOrDislike = async (idMovie, value,token) => {
   return new Promise((resolve, reject) => {
     // instance.post(movieApi.urlIsLike, {
     //   id_movie: idMovie,
@@ -391,19 +373,19 @@ export const isLikeOrDislike = async (idMovie, value, token) => {
     // )
     fetch(movieApi.urlIsLike
       , {
-        crossDomain: true,
-        method: "POST",
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': "Bearer " + token,
-        },
-        body: JSON.stringify({
-          id_movie: idMovie,
-          value
-        })
+          crossDomain: true,
+          method: "POST",
+          mode: 'cors',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': "Bearer " + token,
+          },
+          body: JSON.stringify({ 
+            id_movie:idMovie,
+            value
+          })
       }
-    )
+  )
       .then(response => {
         resolve(response)
       })

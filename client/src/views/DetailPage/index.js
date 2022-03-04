@@ -33,6 +33,7 @@ const DetailPage = (props) => {
                 const response = await getMovieAPI(idMovie.toString())
                 if (response.status === 200) {
                     let data = await response.data
+                    console.log("🚀 ~ file: index.js ~ line 36 ~ fetchData ~ data", data)
                     setDataMovie(data)
 
                 }
